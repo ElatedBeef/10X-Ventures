@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10X Ventures | Next Generation of Flight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0a1628;
+      --accent: #00d4ff;
+      --accent-dim: #00a8cc;
+      --gold: #f0c14b;
+      --text: #e8f0f7;
+      --text-muted: #94a3b8;
+      --card-bg: rgba(15, 30, 50, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(240, 193, 75, 0.05) 0%, transparent 50%),
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8%;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0, 212, 255, 0.12);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(0, 212, 255, 0.25);
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.95rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a1628;
+    }
+
+    .btn-primary:hover {
+      background: #33ddff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    section {
+      padding: 6rem 8%;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 212, 255, 0.12);
+      border-radius: 16px;
+      padding: 2.2rem;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 212, 255, 0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0, 212, 255, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .acreage {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(240, 193, 75, 0.06));
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 20px;
+      padding: 3.5rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .acreage h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .acreage .number {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .impact-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .impact-card.charity {
+      border-top: 4px solid var(--accent);
+    }
+
+    .impact-card.ministry {
+      border-top: 4px solid var(--gold);
+    }
+
+    .impact-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .impact-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .impact-card ul {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .impact-card li {
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .impact-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .impact-card.ministry li::before {
+      color: var(--gold);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(to bottom, transparent, rgba(0, 212, 255, 0.04));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .email-block {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .email-block label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .email-block a {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+
+    .email-block a:hover {
+      text-decoration: underline;
+    }
+
+    /* Form Styles */
+    .contact-form {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.45rem;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(10, 22, 40, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    footer {
+      padding: 3rem 8%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding-top: 6rem;
+      }
+      section {
+        padding: 4rem 6%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">10X<span>Ventures</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#academy">Flight Academy</a></li>
+      <li><a href="#aerospace">Aerospace</a></li>
+      <li><a href="#charitable">Charitable</a></li>
+      <li><a href="#ministries">Ministries</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">Next-Generation Transportation</div>
+      <h1>Building the Future of <span>Flight</span></h1>
+      <p>
+        10X Ventures is creating and training the next generation of aviation leaders through an eVTOL Flight Academy, introduction flights, and aerospace development on a dedicated 80-acre campus.
+      </p>
+      <div class="hero-cta">
+        <a href="#academy" class="btn btn-primary">Explore the Academy</a>
+        <a href="#contact" class="btn btn-outline">Partner With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Offerings -->
+  <section id="academy">
+    <div class="section-header">
+      <h2>What We Build</h2>
+      <p>Training pilots. Advancing technology. Shaping the future of personal and regional air mobility.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">✈</div>
+        <h3>eVTOL Flight Academy</h3>
+        <p>
+          Professional pilot training programs focused on electric vertical takeoff and landing aircraft. From private pilots to commercial operators, we prepare the next generation for the new era of aviation.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛫</div>
+        <h3>Introduction Flights</h3>
+        <p>
+          Experience the future firsthand. Our discovery and introductory flights give future pilots, investors, and enthusiasts a real taste of eVTOL technology in a controlled, professional environment.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛰</div>
+        <h3>Aerospace Development</h3>
+        <p>
+          On-site research, prototyping, and collaboration with industry partners. We are building the infrastructure and talent pipeline that advanced air mobility needs to scale.
+        </p>
+      </div>
+    </div>
+
+    <div class="acreage">
+      <div class="number">80</div>
+      <h3>Acres of Purpose-Built Campus</h3>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+        A dedicated home for flight training, research, hangars, runways, and the community that will power the next chapter of transportation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Charitable + Ministries -->
+  <section id="charitable">
+    <div class="section-header">
+      <h2>Giving Back &amp; Going Higher</h2>
+      <p>Success means nothing if we don’t lift others with us.</p>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card charity">
+        <h3>10X Charitable Venture</h3>
+        <p>
+          We believe the future of flight should be accessible. Through scholarships, community programs, and outreach, we invest in the next generation of talent—especially those who might otherwise never get the opportunity.
+        </p>
+        <ul>
+          <li>Flight training scholarships</li>
+          <li>STEM education partnerships</li>
+          <li>Community aerospace events</li>
+          <li>Youth mentorship programs</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Contact Charitable Team</a>
+      </div>
+
+      <div class="impact-card ministry" id="ministries">
+        <h3>10X Ministries</h3>
+        <p>
+          Faith is at the heart of how we build. 10X Ministries integrates Christian values into aviation and business—equipping leaders to fly higher in purpose, integrity, and service.
+        </p>
+        <ul>
+          <li>Faith-based leadership development</li>
+          <li>Aviation ministry outreach</li>
+          <li>Business as mission principles</li>
+          <li>Community prayer &amp; fellowship events</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="border-color: var(--gold); color: var(--gold);">Join the Mission</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <h2>Get in Touch</h2>
+      <p>Ready to train, partner, give, or learn more? Reach out — we’d love to hear from you.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Direct Emails</h3>
+        <p>Choose the right inbox for faster response.</p>
+
+        <div class="email-block">
+          <label>General / Academy / Partnerships</label>
+          <a href="mailto:10XVentureCo@gmail.com">10XVentureCo@gmail.com</a>
+        </div>
+
+        <div class="email-block">
+          <label>10X Charitable Venture</label>
+          <a href="mailto:10Xcharities@gmail.com">10Xcharities@gmail.com</a>
+        </div>
+
+        <div class="email-block">
+          <label>10X Ministries</label>
+          <a href="mailto:10XVentureCo@gmail.com?subject=Ministries%20Inquiry">10XVentureCo@gmail.com</a>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">
+            Please put “Ministries” in the subject line
+          </div>
+        </div>
+      </div>
+
+      <!-- Working Contact Form -->
+      <div class="contact-form">
+        <form id="inquiryForm" onsubmit="return sendInquiry(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="interest">I’m interested in *</label>
+            <select id="interest" name="interest" required>
+              <option value="">Select an option</option>
+              <option value="Flight Academy">Flight Academy / Training</option>
+              <option value="Introduction Flights">Introduction Flights</option>
+              <option value="Aerospace Development">Aerospace / Partnerships</option>
+              <option value="Charitable">10X Charitable Venture</option>
+              <option value="Ministries">10X Ministries</option>
+              <option value="General">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us how we can help..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Send Inquiry
+          </button>
+
+          <p class="form-note">
+            This will open your email app with the message ready to send
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo">10X<span>Ventures</span></div>
+    <div class="footer-links">
+      <a href="#academy">Academy</a>
+      <a href="#charitable">Charitable</a>
+      <a href="#ministries">Ministries</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>© 2026 10X Ventures</div>
+  </footer>
+
+  <script>
+    function sendInquiry(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const interest = document.getElementById('interest').value;
+      const message = document.getElementById('message').value.trim();
+
+      // Route to the correct email based on interest
+      let toEmail = "10XVentureCo@gmail.com";
+      if (interest === "Charitable") {
+        toEmail = "10Xcharities@gmail.com";
+      }
+
+      const subject = encodeURIComponent(`10X Ventures Inquiry – ${interest}`);
+      const body = encodeURIComponent(
+`Name: ${name}
+Email: ${email}
+Interest: ${interest}
+
+Message:
+${message}
+
+---
+Sent from the 10X Ventures website contact form`
+      );
+
+      window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+      
+      return false;
+    }
+  </script>
+
+</body>
+</html>
