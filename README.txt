@@ -1,26 +1,25 @@
-10X Ventures Website Files
-==========================
+10X Ventures Website - Final Package
+====================================
 
-Contents:
-- index.html          → Main landing page
+FILES IN THIS ZIP:
+- index.html          → Main homepage (with eVTOL hero)
 - consulting.html     → Consulting Services page
 - README.txt          → This file
 
-REQUIRED IMAGES (you must add these):
--------------------------------------
-Download the two cleaned images from the chat and rename them exactly:
+YOU MUST ADD THESE 3 IMAGES:
+----------------------------
+1. hero-evtol.jpg      → The eVTOL aircraft image (from the chat)
+2. campus-aerial.jpg   → Cleaned aerial campus view
+3. campus-plan.jpg     → Cleaned engineering site plan
 
-1. campus-aerial.jpg   ← the photorealistic aerial view of the campus
-2. campus-plan.jpg     ← the engineering orthographic site plan
+How to use:
+1. Download the 3 images from the chat conversation
+2. Rename them exactly as shown above
+3. Put them in the same folder as the HTML files
+4. Upload the entire folder to Netlify Drop, Cloudflare Pages, or GitHub Pages
 
-Place both image files in the same folder as the HTML files before uploading to GitHub.
+Recommended hosting: https://app.netlify.com/drop  (just drag the folder)
 
-How to upload to GitHub Pages:
-1. Create a new public repository
-2. Upload all files (index.html, consulting.html, campus-aerial.jpg, campus-plan.jpg)
-3. Go to Settings → Pages → set Source to "main" branch / root
-4. Your site will be live at: https://yourusername.github.io/repository-name/
-
-Emails used:
+Emails configured:
 - General / Consulting: 10XVentureCo@gmail.com
 - Charitable: 10Xcharities@gmail.com

@@ -16,9 +16,7 @@
       --text-muted: #94a3b8;
       --card-bg: rgba(15, 30, 50, 0.7);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--primary);
@@ -26,7 +24,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     body::before {
       content: '';
       position: fixed;
@@ -40,7 +37,6 @@
       pointer-events: none;
       z-index: -1;
     }
-
     nav {
       position: fixed;
       top: 0;
@@ -54,7 +50,6 @@
       border-bottom: 1px solid rgba(0, 212, 255, 0.15);
       z-index: 1000;
     }
-
     .logo {
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
@@ -63,7 +58,6 @@
       text-decoration: none;
     }
     .logo span { color: var(--accent); }
-
     .nav-links {
       display: flex;
       gap: 1.8rem;
@@ -80,13 +74,13 @@
 
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 8%;
-      padding-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 8rem 6% 4rem;
     }
-
+    .hero-content { max-width: 560px; }
     .hero-badge {
       display: inline-block;
       background: rgba(0, 212, 255, 0.12);
@@ -98,28 +92,41 @@
       margin-bottom: 1.4rem;
       border: 1px solid rgba(0, 212, 255, 0.25);
     }
-
     .hero h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.7rem, 6vw, 4.1rem);
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
       font-weight: 700;
       line-height: 1.15;
       margin-bottom: 1.4rem;
-      max-width: 800px;
     }
     .hero h1 span { color: var(--accent); }
-
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2.2rem;
     }
-
     .hero-cta {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 580px;
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+    }
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 7rem;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-cta { justify-content: center; }
+      .hero-image { order: -1; }
+      .hero-image img { max-width: 420px; margin: 0 auto; display: block; }
     }
 
     .btn {
@@ -153,7 +160,6 @@
     }
 
     section { padding: 5.5rem 8%; }
-
     .section-header {
       text-align: center;
       max-width: 700px;
@@ -236,10 +242,7 @@
       border-radius: 12px;
       padding: 1.6rem 1.8rem;
     }
-    .mini-card h4 {
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-    }
+    .mini-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
     .mini-card p {
       color: var(--text-muted);
       font-size: 0.92rem;
@@ -262,7 +265,6 @@
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; }
     }
-
     .email-block {
       background: var(--card-bg);
       border: 1px solid rgba(0, 212, 255, 0.12);
@@ -282,7 +284,6 @@
       font-size: 1.05rem;
       text-decoration: none;
     }
-
     .contact-form {
       background: var(--card-bg);
       border: 1px solid rgba(0, 212, 255, 0.12);
@@ -350,7 +351,6 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero { padding-top: 6rem; }
       section { padding: 4rem 6%; }
     }
   </style>
@@ -368,7 +368,7 @@
   </nav>
 
   <section class="hero" id="home">
-    <div>
+    <div class="hero-content">
       <div class="hero-badge">Advanced Air Mobility</div>
       <h1>Building the Future of <span>Flight</span></h1>
       <p>
@@ -379,6 +379,9 @@
         <a href="consulting.html" class="btn btn-outline">Consulting Services</a>
       </div>
     </div>
+    <div class="hero-image">
+      <img src="hero-evtol.jpg" alt="eVTOL Aircraft">
+    </div>
   </section>
 
   <section id="academy">
@@ -386,7 +389,6 @@
       <h2>Aerospace Focus</h2>
       <p>Training pilots. Advancing technology. Building the infrastructure for the next era of flight.</p>
     </div>
-
     <div class="cards">
       <div class="card">
         <div class="card-icon">✈</div>
@@ -404,7 +406,6 @@
         <p>On-site research, testing, and collaboration to build the talent pipeline and infrastructure advanced air mobility needs.</p>
       </div>
     </div>
-
     <div class="acreage">
       <div class="number">80</div>
       <h3>Acres of Purpose-Built Campus</h3>
@@ -435,7 +436,6 @@
       <h2>Get in Touch</h2>
       <p>Interested in training, consulting, or learning more about the campus?</p>
     </div>
-
     <div class="contact-grid">
       <div>
         <div class="email-block">
@@ -447,7 +447,6 @@
           <a href="mailto:10Xcharities@gmail.com">10Xcharities@gmail.com</a>
         </div>
       </div>
-
       <div class="contact-form">
         <form id="inquiryForm" onsubmit="return sendInquiry(event)">
           <div class="form-row">
@@ -501,13 +500,10 @@
       const email = document.getElementById('email').value.trim();
       const interest = document.getElementById('interest').value;
       const message = document.getElementById('message').value.trim();
-
       let toEmail = "10XVentureCo@gmail.com";
       if (interest === "Charitable") toEmail = "10Xcharities@gmail.com";
-
       const subject = encodeURIComponent(`10X Ventures – ${interest}`);
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInterest: ${interest}\n\nMessage:\n${message}\n\n---\nSent from 10X Ventures website`);
-
       window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`;
       return false;
     }
